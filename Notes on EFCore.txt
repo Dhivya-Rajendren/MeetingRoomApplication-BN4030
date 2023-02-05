@@ -1,0 +1,65 @@
+ADO.Net 
+
+Framework used for connecting the application and database.
+
+Classes in ADO .Net
+
+SqlConnection
+Sqlcommand
+SqlDatareader
+SqlDataAdapter
+SqlCommandbuilder
+DataSet
+DataTable
+
+Connection 
+
+DB-Tables -Columns-Rows-SQL
+
+Application-Clases-Properties-Objects-C#
+
+Microsoft's ORM -Object Relationship Mapping 
+
+Code-First 
+Database-First
+
+We are starting with Code-First Approach where model class will be 
+created first .
+
+
+Project working on MeetingRoomProject
+
+MeetingRoom-Class
+MeetingRoomId
+MeetingRoomName
+Capacity
+MeetingRoomType
+Location
+
+
+Meeting-Class
+MeetingId
+MeetingRoomId
+MeetingName
+Description
+MeetingDateTime
+
+
+
+
+SQLServer 
+
+Installation
+If MS.EFCore.SQlServer
+    |
+MS.EFCORE.Relational
+	|
+MS.EFCOre
+	|
+MS.EFCORE.*
+
+
+
+
+
+
