@@ -21,6 +21,13 @@ namespace MeetingRoom.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //setting the global query filters
+
+            modelBuilder.Entity<MeetingRoom.Domain.MeetingRoom>().HasQueryFilter(m => m.IsActive);
+            modelBuilder.Entity<Meeting>().HasQueryFilter(m => m.IsActive);
+        }
 
         //SQL Server  and we need the information about the server, database, Authentication details
     }

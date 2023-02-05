@@ -16,5 +16,7 @@ namespace MeetingRoom.Domain
         public string MeetingRoomType { get; set; }
   [MaxLength(200)]
         public string Location { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

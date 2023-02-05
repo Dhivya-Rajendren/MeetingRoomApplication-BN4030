@@ -18,5 +18,6 @@ namespace MeetingRoom.Domain
         public string Description { get; set; }
 
         public DateTime MeetingDateTime { get; set; }
+        public bool IsActive { get; set; }
     }
 }

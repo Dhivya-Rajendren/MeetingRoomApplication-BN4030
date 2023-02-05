@@ -4,6 +4,7 @@ using MeetingRoom.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetingRoom.Data.Migrations
 {
     [DbContext(typeof(MeetingRoomDbContext))]
-    partial class MeetingRoomDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230205045307_Adding a IsActive Column")]
+    partial class AddingaIsActiveColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,6 @@ namespace MeetingRoom.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("char(100)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("MeetingDateTime")
                         .HasColumnType("datetime2");

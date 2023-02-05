@@ -8,6 +8,7 @@ int tableChoice = int.Parse(Console.ReadLine());
 
 Console.WriteLine("We are Connecting with Database created using the EF Core Code _first approach");
 int operationChoice = 0;
+string s;
 MeetingRoomDbContext dbContext = new MeetingRoomDbContext();
 int rowsAffected = 0;
 
@@ -43,7 +44,7 @@ if (tableChoice == 1)
 
         case 2:
 
-            string s = String.Format("{0}{1,-90}", "Name                   ", "Room Type");
+          s = String.Format("{0}{1,-90}", "Name                   ", "Room Type");
             Console.WriteLine(s);
 
             foreach (var item in GetAllMeetingRooms())
@@ -70,7 +71,8 @@ if (tableChoice == 1)
             Console.WriteLine("Enter the RoomName For Update");
             string rName = Console.ReadLine();
              MeetingRoom.Domain.MeetingRoom _room = dbContext.tbl_MeetingRooms.SingleOrDefault(r => r.MeetingRoomName.Equals(rName));
-            dbContext.tbl_MeetingRooms.Remove(_room);
+            //    dbContext.tbl_MeetingRooms.Remove(_room);
+            _room.IsActive = false;
             rowsAffected = dbContext.SaveChanges();
             if (rowsAffected > 0)
             {
@@ -86,31 +88,55 @@ if (tableChoice == 1)
 
 }
 
+else if(tableChoice==2)
+{
+    Console.WriteLine("Select 1 -->Adding New Data 2-->Reading  3-->Updating 4-->Delete");
+    operationChoice = int.Parse(Console.ReadLine());
+    switch(operationChoice)
+    {
+        case 1:
+            break;
+        case 2:
 
-        //Console.WriteLine("Enter the detail of Meetings");
-        //Meeting meeting = new Meeting();
-        //Console.WriteLine("Meeting Room Name :");
-        //meeting.MeetingRoom = Console.ReadLine();
-        //Console.WriteLine("Meeting Description");
-        //meeting.Description = Console.ReadLine();
-        //Console.WriteLine("Date & Time of the Meeting");
-        //meeting.MeetingDateTime =DateTime.Parse( Console.ReadLine());
+            s = String.Format("{0}{1,-90}", "Meeting Name                   ", "Meeting Room");
+            Console.WriteLine(s);
 
-        //meeting.MeetingRoomId = GetAllMeetingRooms().Find(m => m.MeetingRoomName .Trim()== meeting.MeetingRoom).MeetingRoomId;
+            foreach (var item in GetAllMeetings())
+            {
+                s = String.Format("{0}{1,-60}", item.Description.Trim(), item.MeetingRoom);
+                Console.WriteLine(s);
+            }
 
 
-        //      dbContext.tbl_Meetings.Add(meeting);// Writing a SQL query in editor
-        //dbContext.SaveChanges();//The Sql query gets executed .
 
-        // s = String.Format("{0}{1,-90}", "Meeting Name                   ", "Meeting Room");
-        //Console.WriteLine(s);
+            break;
+    }
+}
 
-        //foreach (var item in GetAllMeetings())
-        //{
-        //    s = String.Format("{0}{1,-60}", item.Description, item.MeetingRoom);
-        //    Console.WriteLine(s);
-        //}
-    
+//Console.WriteLine("Enter the detail of Meetings");
+//Meeting meeting = new Meeting();
+//Console.WriteLine("Meeting Room Name :");
+//meeting.MeetingRoom = Console.ReadLine();
+//Console.WriteLine("Meeting Description");
+//meeting.Description = Console.ReadLine();
+//Console.WriteLine("Date & Time of the Meeting");
+//meeting.MeetingDateTime =DateTime.Parse( Console.ReadLine());
+
+//meeting.MeetingRoomId = GetAllMeetingRooms().Find(m => m.MeetingRoomName .Trim()== meeting.MeetingRoom).MeetingRoomId;
+
+
+//      dbContext.tbl_Meetings.Add(meeting);// Writing a SQL query in editor
+//dbContext.SaveChanges();//The Sql query gets executed .
+
+// s = String.Format("{0}{1,-90}", "Meeting Name                   ", "Meeting Room");
+//Console.WriteLine(s);
+
+//foreach (var item in GetAllMeetings())
+//{
+//    s = String.Format("{0}{1,-60}", item.Description, item.MeetingRoom);
+//    Console.WriteLine(s);
+//}
+
 
 
 
@@ -120,7 +146,9 @@ List<Meeting> GetAllMeetings()
 }
 List<MeetingRoom.Domain.MeetingRoom> GetAllMeetingRooms()
 {
-    List<MeetingRoom.Domain.MeetingRoom> meetingRooms = dbContext.tbl_MeetingRooms.ToList();
+    List<MeetingRoom.Domain.MeetingRoom> meetingRooms = dbContext.tbl_MeetingRooms.ToList(); // All the records
+
+  //  meetingRooms = dbContext.tbl_MeetingRooms.Where(mr => mr.IsActive).ToList();// FEtch all active data
 
     return meetingRooms;
 
