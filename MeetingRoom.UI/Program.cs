@@ -33,7 +33,7 @@ if (tableChoice == 1)
             Console.WriteLine("Capacity of Room");
             meetingRoom.Capacity = int.Parse(Console.ReadLine());
 
-            meetingRoom.IsActive = true;
+          //  meetingRoom.IsActive = true;
             dbContext.tbl_MeetingRooms.Add(meetingRoom);// Writing a SQL query in editor
             rowsAffected = dbContext.SaveChanges();//The Sql query gets executed .
             if (rowsAffected > 0)
@@ -104,7 +104,7 @@ else if(tableChoice==2)
             meeting.Description = Console.ReadLine();
             Console.WriteLine("Meeting Data and Time ");
             meeting.MeetingDateTime = Convert.ToDateTime(Console.ReadLine());
-            meeting.IsActive = true;
+        //   meeting.IsActive = true;
             dbContext.tbl_Meetings.Add(meeting);
             rowsAffected= dbContext.SaveChanges();
             if (rowsAffected>0)

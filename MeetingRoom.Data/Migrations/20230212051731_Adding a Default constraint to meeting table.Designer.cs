@@ -4,6 +4,7 @@ using MeetingRoom.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetingRoom.Data.Migrations
 {
     [DbContext(typeof(MeetingRoomDbContext))]
-    partial class MeetingRoomDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212051731_Adding a Default constraint to meeting table")]
+    partial class AddingaDefaultconstrainttomeetingtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,6 @@ namespace MeetingRoom.Data.Migrations
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasColumnName("Status")
                         .HasDefaultValueSql("1");
 
                     b.Property<DateTime>("MeetingDateTime")
@@ -65,10 +66,7 @@ namespace MeetingRoom.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasColumnName("Status")
-                        .HasDefaultValueSql("1");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .IsRequired()
