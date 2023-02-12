@@ -33,7 +33,7 @@ if (tableChoice == 1)
             Console.WriteLine("Capacity of Room");
             meetingRoom.Capacity = int.Parse(Console.ReadLine());
 
-
+            meetingRoom.IsActive = true;
             dbContext.tbl_MeetingRooms.Add(meetingRoom);// Writing a SQL query in editor
             rowsAffected = dbContext.SaveChanges();//The Sql query gets executed .
             if (rowsAffected > 0)
@@ -95,15 +95,33 @@ else if(tableChoice==2)
     switch(operationChoice)
     {
         case 1:
+            Meeting meeting = new Meeting();
+            Console.WriteLine("Enter the meeting Details");
+            Console.WriteLine("Enter the meeting Room Name :");
+            string meetingRoomName = Console.ReadLine();
+            meeting.MeetingRoom = dbContext.tbl_MeetingRooms.FirstOrDefault(mr => mr.MeetingRoomName == meetingRoomName);
+            Console.WriteLine("Enter the meeting Description : ");
+            meeting.Description = Console.ReadLine();
+            Console.WriteLine("Meeting Data and Time ");
+            meeting.MeetingDateTime = Convert.ToDateTime(Console.ReadLine());
+            meeting.IsActive = true;
+            dbContext.tbl_Meetings.Add(meeting);
+            rowsAffected= dbContext.SaveChanges();
+            if (rowsAffected>0)
+            {
+                Console.WriteLine("Meetings Added");
+            }
+
             break;
         case 2:
 
-            s = String.Format("{0}{1,-90}", "Meeting Name                   ", "Meeting Room");
+            s = String.Format("{0}{1,-60}{2,-30}", "Meeting Name                   ", "Meeting Room","Location");
             Console.WriteLine(s);
 
             foreach (var item in GetAllMeetings())
             {
-                s = String.Format("{0}{1,-60}", item.Description.Trim(), item.MeetingRoom);
+                MeetingRoom.Domain.MeetingRoom mr = dbContext.tbl_MeetingRooms.Find(item.MeetingRoomId);
+                s = String.Format("{0}{1,-60}{2,-30}", item.Description.Trim(), mr.MeetingRoomName,mr.Location);
                 Console.WriteLine(s);
             }
 

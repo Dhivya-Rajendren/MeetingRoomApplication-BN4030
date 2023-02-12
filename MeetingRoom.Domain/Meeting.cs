@@ -13,7 +13,10 @@ namespace MeetingRoom.Domain
         public int MeetingId { get; set; }
         public int MeetingRoomId { get; set; }
         [Column(TypeName = "char(30)")]
-        public string MeetingRoom { get; set; }
+
+
+        public MeetingRoom MeetingRoom { get; set; }
+
         [Column(TypeName = "char(100)")]
         public string Description { get; set; }
 
